@@ -1,6 +1,6 @@
 /hue_work/
 /config.ini
-.idea/workspace.xml
+.idea/
 HelpScoutApiService.pyc
 HueInterfaceService.pyc
 entities/Color.pyc
