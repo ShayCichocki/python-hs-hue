@@ -22,7 +22,8 @@ class Color(object):
         return {
             "colormode": "xy",
             "on": True,
-            "xy": [self.x, self.y]
+            "xy": [self.x, self.y],
+            "bri": 255
         }
 
 
@@ -58,7 +59,7 @@ def convert_rgb_to_xy(blue, green, red):
     return x, y
 
 
-COLOR_RED = from_rgb([255, 0, 255])
+COLOR_RED = from_rgb([255, 0, 0])
 COLOR_GREEN = from_rgb([0, 255, 0])
 COLOR_BLUE = from_rgb([0, 0, 255])
 COLOR_WHITE = from_rgb([255, 255, 255])

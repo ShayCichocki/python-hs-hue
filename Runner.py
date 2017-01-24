@@ -1,31 +1,26 @@
 import threading
 from ConfigParser import SafeConfigParser
 
-from HelpScoutApiService import HelpScoutApiService
-from HueInterfaceService import HueInterfaceService
-
-from entities import Color
+from services.HelpScoutApiService import HelpScoutApiService
+from services.HueInterfaceService import HueInterfaceService
+from services.QueueNotifierService import QueueNotifierService
 
 config = SafeConfigParser()
 config.read('config.ini')
-userId = config.get('main', 'un')
+user_id = config.get('main', 'un')
 ip_address = config.get('main', 'ip')
 api_key = config.get('hs', 'api_key')
 mailbox_id = config.get('hs', 'mailbox_id')
 
-hue_service = HueInterfaceService(ip_address, userId)
+hue_service = HueInterfaceService(ip_address, user_id)
 hs_api_service = HelpScoutApiService(api_key)
+queue_notifier = QueueNotifierService(api_key, mailbox_id, hue_service, hs_api_service)
 
 
 def check_service():
-    mine_folder = hs_api_service.get_mine_folder_in_mailbox(mailbox_id)
-    if mine_folder['activeCount'] > 0:
-        hue_service.change_color(1, Color.COLOR_RED)
-    else:
-        hue_service.change_color(1, Color.COLOR_WHITE)
+    queue_notifier.check_queue()
 
     t = threading.Timer(10, check_service)
     t.start()
-
 
 check_service()

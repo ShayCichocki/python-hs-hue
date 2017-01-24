@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 class HueInterfaceService(object):
     ip_address = ''
     user_id = ''
