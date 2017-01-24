@@ -20,7 +20,7 @@ queue_notifier = QueueNotifierService(api_key, mailbox_id, hue_service, hs_api_s
 def check_service():
     queue_notifier.check_queue()
 
-    t = threading.Timer(10, check_service)
+    t = threading.Timer(60, check_service)
     t.start()
 
 check_service()
