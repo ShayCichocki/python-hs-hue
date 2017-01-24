@@ -1,5 +1,16 @@
 # Python HelpScout-Hue interface
-Checks mine folder for active tickets, changes light to red if there is a ticket
+<p>Super simple interface between HelpScout and a Phillips Hue hub</p>
+
+## How
+<p>Checks mine folder for active tickets. Changes color based on the following:</p>
+
+| Conversation Property  | Color |
+|------------------------|-------|
+| VIP tag                | Red   |
+| Contains certain words | Blue  |
+| Other Conversations    | Green |
+| Empty                  | White |
+
 
 
 
